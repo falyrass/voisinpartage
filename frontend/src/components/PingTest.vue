@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/lib/http'
 
 const result = ref('')
 const error = ref('')
@@ -17,7 +17,7 @@ async function testPing() {
   result.value = ''
   error.value = ''
   try {
-    const { data } = await axios.get('http://127.0.0.1:8000/api/ping')
+    const { data } = await api.get('/ping')
     result.value = data.status
   } catch (e) {
     error.value = e.message
